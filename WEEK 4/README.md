@@ -7,7 +7,7 @@
 
 <hr>
 
-<p>Hello everyone👋, This is a repository for Networking Programming course code Socket Programming topic in semester 4 at the Telkomuniversity National Campus Surabaya🧑‍💻.</p>
+<p>Hello everyone👋, This is a repository for Networking Programming course code Socket Programming topic in semester 4 at the Telkomuniversity Surabaya🧑‍💻.</p>
 <p>Don't forget to leave a mark by giving a star⚡on this repository.</p>
 
 <hr>
@@ -157,10 +157,177 @@ print(data.decode())
 client_socket.close()
 ```
 
+**C. Output Program**
+- Percobaan 1
+  
+  ![alt text](1-1.jpg)
+  ![alt text](1-2.jpg)
+- Percobaan 2
+  
+  ![alt text](1-3.jpg)
+  ![alt text](1-4.jpg)
+
 ## Soal 2, 3 & Jawaban
 2.	Membuat sebuah program server yang dapat menerima koneksi dari klien menggunakan protokol TCP. Server ini akan menerima pesan dari klien dan mengirimkan pesan balasan berisi jumlah karakter pada pesan tersebut. Gunakan port 12345 untuk server. Membuat analisa dari hasil program tersebut.
-3.	Membuat sebuah program klien yang dapat terhubung ke server yang telah dibuat pada soal nomor 1. Klien ini akan mengirimkan pesan ke server berupa inputan dari pengguna dan menampilkan pesan balasan jumlah karakter yang diterima dari server. 
+3.	Membuat sebuah program klien yang dapat terhubung ke server yang telah dibuat pada soal nomor 1. Klien ini akan mengirimkan pesan ke server berupa inputan dari pengguna dan menampilkan pesan balasan jumlah karakter yang diterima dari server.
 
+**A. Code Server**
+```python
+import socket
+
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+HOST = 'localhost'
+PORT = 12345
+
+server_socket.bind((HOST, PORT))
+
+server_socket.listen(1)
+print("Menunggu koneksi terhubung...")
+
+client_socket, client_address = server_socket.accept()
+print("Koneksi dibuat dengan", client_address)
+
+while True:
+    data = client_socket.recv(1024)
+    if not data:
+        break
+    message = data.decode()
+    character_count = len(message)
+    response = "Jumlah karakter adalah " + str(character_count)
+    client_socket.sendall(response.encode())
+
+client_socket.close()
+server_socket.close()
+```
+Berikut penjelasan kode program diatas :
+
+- Membuat objek socket yang digunakan oleh server dengan parameter pertama yaitu socket.AF_INET yang artinya menggunakan protokol Alamat IPv4 dan parameter kedua yaitu socket.SOCK_STREAM yang artinya menggunakan protokol TCP berbasis stream.
+```python
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+```
+- Mendefinisikan alamat host (localhost) dan nomor port (12345) yang digunakan oleh server. Localhost mengacu pada komputer server dan Port dipilih secara acak tetapi harus cocok dengan port yang digunakan klien.
+```python
+HOST = 'localhost'
+PORT = 12345
+```
+- Mengikat (bind) socket server ke alamat dan port yang telah dibuat.
+```python
+server_socket.bind((HOST, PORT))
+```
+- Mengaktifkan mode listen pada socket server dengan parameter 1 yang menentukan jumlah maksimum antrian koneksi yang diterima oleh server.
+```python
+server_socket.listen(1)
+```
+- Mencetak pesan sebagai penanda server menunggu koneksi dari klien.
+```python
+print("Menunggu koneksi terhubung...")
+```
+- Membuat metode untuk menerima koneksi dari klien. Metode accept() akan memblokir program sampai klien terhubung. Setelah koneksi diterima, server akan mengembalikan socket klien dan alamat klien.
+```python
+client_socket, client_address = server_socket.accept()
+```
+- Mencetak pesan yang menunjukkan bahwa koneksi telah berhasil dibuat.
+```python
+print("Koneksi dibuat dengan", client_address)
+```
+- Memulai loop untuk menerima pesan dari klien secara terus-menerus.
+```python
+while True:
+```
+- Membuat metode untuk menerima pesan dari klien dengan parameter 1024 yang menunjukkan ukuran buffer yang akan digunakan untuk menerima data.
+```python
+data = client_socket.recv(1024)
+```
+- Membuat kondisi jika tidak ada diterima berarti koneksi telah ditutup dan looping akan berhenti.
+```python
+if not data:
+        break
+```
+- Mendekode data yang diterima dari klien menjadi string dan data tersebut akan disimpan didalam variabel message.
+```python
+message = data.decode()
+```
+- Menghitung jumlah karakter dari pesan yang diterima.
+```python
+character_count = len(message)
+```
+- Menyusun pesan respons yang berisi jumlah karakter yang telah dihitung.
+```python
+response = "Jumlah karakter adalah " + str(character_count)
+```
+- Mengirim respon Kembali kepada klien.
+```python
+client_socket.sendall(response.encode())
+```
+- Menutup koneksi socket klien setelah selesai berkomunikasi.
+```python
+client_socket.close()
+```
+- Menutup socket server setelah selesai.
+```python
+server_socket.close()
+```
+
+**B. Code Klien**
+```python
+import socket
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+HOST = 'localhost'
+PORT = 12345
+
+client_socket.connect((HOST, PORT))
+
+message = input("Masukkan pesan: ")
+client_socket.sendall(message.encode())
+
+response = client_socket.recv(1024)
+print("Balasan dari server:", response.decode())
+
+client_socket.close()
+```
+Berikut penjelasan kode program diatas :
+
+- Membuat objek socket untuk klien.
+```python
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+```
+- Mendefinisikan alamat host (localhost) dan nomor port (12345). Localhost mengacu pada komputer klien dan Port dipilih secara acak tetapi harus cocok dengan port yang digunakan server.
+```python
+HOST = 'localhost'
+PORT = 12345
+```
+- Membuat metode untuk mengoneksikan klien ke server.
+```python
+client_socket.connect((HOST, PORT))
+```
+- Meminta klien memasukkan pesan yang akan dikirimkan ke server.
+```python
+message = input("Masukkan pesan: ")
+```
+e.	Membuat metode untuk mengirimkan pesan ke server.
+```python
+client_socket.sendall(message.encode())
+```
+- Membuat metode untuk menerima pesan dari server dengan parameter 1024 menunjukkan ukuran buffer yang digunakan untuk menerima data.
+```python
+response = client_socket.recv(1024)
+```
+- Membuat metode untuk mencetak pesan yang diterima dari server.
+```python
+print("Balasan dari server:", response.decode())
+```
+- Menutup koneksi dengan server.
+```python
+client_socket.close()
+```
+
+**C. Output Program**
+
+  ![alt text](2-1.jpg)
+  ![alt text](2-2.jpg)
 
 <hr>
 
