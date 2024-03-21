@@ -160,12 +160,12 @@ client_socket.close()
 **C. Output Program**
 - Percobaan 1
   
-  ![alt text](1-1.jpg)
-  ![alt text](1-2.jpg)
+  ![alt text](assets/1-1.jpg)
+  ![alt text](assets/1-2.jpg)
 - Percobaan 2
   
-  ![alt text](1-3.jpg)
-  ![alt text](1-4.jpg)
+  ![alt text](assets/1-3.jpg)
+  ![alt text](assets/1-4.jpg)
 
 ## Soal 2, 3 & Jawaban
 2.	Membuat sebuah program server yang dapat menerima koneksi dari klien menggunakan protokol TCP. Server ini akan menerima pesan dari klien dan mengirimkan pesan balasan berisi jumlah karakter pada pesan tersebut. Gunakan port 12345 untuk server. Membuat analisa dari hasil program tersebut.
@@ -326,8 +326,8 @@ client_socket.close()
 
 **C. Output Program**
 
-  ![alt text](2-1.jpg)
-  ![alt text](2-2.jpg)
+  ![alt text](assets/2-1.jpg)
+  ![alt text](assets/2-2.jpg)
 
 <hr>
 
