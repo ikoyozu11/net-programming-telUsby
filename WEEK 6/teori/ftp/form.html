@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="style.css">
+<title>Form Registrasi</title>
+</head>
+<body>
+  <h2>Form Registrasi</h2>
+  <form id="registrationForm" onsubmit="return validateForm()">
+    
+    <!-- Name --> 
+    <div class="name">
+      <label for="name"><b>Nama Lengkap</b></label>
+      <input type="text" placeholder="Masukkan Nama" id="name" name="name" />
+      <span id="nameError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Username -->
+    <div class="username">
+      <label for="username"><b>Nama Pengguna</b></label>
+      <input type="text" placeholder="Masukkan Nama Pengguna" id="username" name="username" />
+      <span id="usernameError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Email -->
+    <div class="email">
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Masukkan Email" name="email" id="email">
+      <span id="emailError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Kata Sandi -->
+    <div class="password">
+      <label for="password"><b>Kata Sandi</b></label>
+      <input type="password" placeholder="Masukkan Kata Sandi" id="password" name="password" />
+      <input type="checkbox" onclick="primaryPassword()">show password
+      <span id="passwordError" class="error"></span>
+    </div>
+    
+    <br />
+    
+    <!-- Confirm Kata Sandi -->
+    <div class="confirm-password">
+      <label for="confirm-password"><b>Konfirmasi Kata Sandi</b></label>
+      <input type="password" placeholder="Ulangi Kata Sandi" id="confirmPassword" name="confirmPassword" />
+      <input type="checkbox" onclick="repeatPassword()">show password
+      <span id="confirmPasswordError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Nomor Telepon -->
+    <div class="phone-number">
+      <label for="phone-number"><b>Nomor Telepon</b></label>
+      <input type="tel" placeholder="Masukkan Nomor Telepon" id="phone" name="phone" />
+      <span id="phoneError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Jenis Kelamin -->
+    <div class="gender">
+      <label for="gender"><b>Jenis Kelamin</b></label>
+      <select id="gender" name="gender">
+        <option value="">Pilih Jenis Kelamin</option>
+        <option value="male">Laki-laki</option>
+        <option value="female">Perempuan</option>
+      </select>
+      <span id="genderError" class="error"></span>
+    </div>
+
+    <br />
+    
+    <!-- Link Web -->
+    <div class="web">
+      <label for="web"><b>Alamat Website</b></label>
+      <input type="url" placeholder="Masukkan URL Web Anda" id="website" name="website" />
+      <span id="websiteError" class="error"></span>
+    </div>
+
+    <br />
+    <br />
+    
+    <!-- Submit Button -->
+    <div class="button-submit">
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+    <script src="script.js"></script>
+  </body>
+</html>
