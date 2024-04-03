@@ -15,7 +15,7 @@ Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibua
 ## Daftar Isi
 
 ### - [Penjelasan Kode Program](#Penjelasan)
-### - [Simulasi Program](#Penggunaan)
+### - [Simulasi Program](#Simulasi)
 
 ## Soal
 
@@ -264,3 +264,17 @@ Program diatas menyediakan antarmuka sederhana bagi pengguna untuk berinteraksi 
      - Menerima respons dari server dan mencetaknya.
      - Jika respons adalah `Command not found`, mencetak pesan kesalahan.
      - Loop akan terus berjalan hingga pengguna memasukkan perintah `byebye`.
+
+<br>
+
+## Simulasi
+
+Untuk pertama, silahkan jalankan file `server.py` dan `client.py` di terminal kalian masing-masing dan akan muncul tampilan awal seperti dibawah ini:
+
+`server.py`
+
+![alt text](assets/1.png)
+
+`client.py`
+
+![alt text](assets/2.png)
