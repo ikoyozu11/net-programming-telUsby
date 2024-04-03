@@ -278,3 +278,9 @@ Untuk pertama, silahkan jalankan file `server.py` dan `client.py` di terminal ka
 `client.py`
 
 ![alt text](assets/2.png)
+
+Sebelum lanjut ke simulasi perintah-perintah yang ada, saya akan memberikan gambaran direktori yang akan saya gunakan seperti dibawah ini:
+
+`direktori ftp`
+
+![alt text](assets/3.png)
