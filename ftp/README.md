@@ -284,3 +284,101 @@ Sebelum lanjut ke simulasi perintah-perintah yang ada, saya akan memberikan gamb
 `direktori ftp`
 
 ![alt text](assets/3.png)
+
+
+### Perintah (Command)
+
+**1. Connme**
+```
+Enter Command : connme
+```
+
+Perintah `connme` digunakan untuk menghubungkan koneksi antara `client` dengan `server`. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/4.png)
+
+`server.py`
+
+![alt text](assets/5.png)
+
+**2. Ls**
+```
+Enter Command : ls
+```
+
+Perintah `ls` digunakan untuk mengetahui folder dan file yang ada di direktori `server`. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/6.png)
+
+**3. Size**
+```
+Enter Command : size <nama_file>
+```
+
+Perintah `size` digunakan untuk mengetahui ukuran file yang diinginkan dengan menambahkan parameter nama file, misalnya `size index.html`. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/7.png)
+
+**4. Upload**
+```
+Enter Command : upload <nama_file>
+```
+
+Perintah `upload` digunakan untuk mengunggah file yang diinginkan `client` dengan menambahkan parameter nama file, misalnya `upload halo.txt`. File yang diunggah ini akan diterima dan disimpan oleh `server` ke direktori server. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/8.png)
+
+Bisa dilihat dari tampilan diatas, bahwa file `coba.txt` sudah ditambahkan ke direktori server berada.
+
+**5. Download**
+```
+Enter Command : download <nama_file>
+```
+
+Perintah `download` digunakan untuk mengunduh file yang diinginkan `client` dengan menambahkan parameter nama file, misalnya `download style.css`. File yang diunduh ini akan berada di sisi `client` sehingga `client` akan menampilkannya. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/9.png)
+
+`server.py`
+
+![alt text](assets/9-1.png)
+
+**6. Rm**
+```
+Enter Command : rm <nama_file>
+```
+
+Perintah `rm` digunakan untuk menghapus file yang diinginkan `client` dengan menambahkan parameter nama file, misalnya `rm halo.txt`. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/10.png)
+
+Bisa dilihat dari tampilan diatas, bahwa file `try.txt` sudah dihapus dari direktori server berada.
+
+**7. Byebye**
+```
+Enter Command : byebye
+```
+
+Perintah `byebye` digunakan untuk memutuskan koneksi antara `client` dengan `server`. Berikut contoh tampilannya:
+
+`client.py`
+
+![alt text](assets/11.png)
+
+`server.py`
+
+![alt text](assets/11-1.png)
+
+Bisa dilihat dari tampilan diatas, bahwa `client` sudah terputus koneksinya dan `server` masih tetap berjalan. Untuk menghubungkan `client` dengan `server` lagi, hanya perlu memasukkan command `connme` maka akan tersambung kembali dengan syarat server masih berjalan.
