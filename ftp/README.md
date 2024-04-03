@@ -152,7 +152,7 @@ if __name__ == "__main__":
 
 **Analisis :**
 
-Program diatas adalah implementasi sederhana dari server TCP yang memungkinkan klien untuk berinteraksi dengan file-file di direktori server. Server menerima permintaan dari klien seperti daftar file, ukuran file, menghapus, mengunduh, atau mengunggah file, dan memberikan respons sesuai. Ini dilakukan melalui penggunaan socket dan fungsi-fungsi bawaan Python untuk mengelola file dan koneksi jaringan. Berikut penjelasan kode programnya :
+Program diatas adalah implementasi sederhana dari server TCP yang memungkinkan klien untuk berinteraksi dengan file-file di direktori server. Server menerima permintaan dari klien seperti `daftar file`, `ukuran file`, `menghapus`, `mengunduh`, atau `mengunggah file`, dan `memberikan respons` sesuai. Ini dilakukan melalui penggunaan socket dan fungsi-fungsi bawaan Python untuk mengelola file dan koneksi jaringan. Berikut penjelasan kode programnya :
 
 **1. Import library yang diperlukan :**
    - `socket` : Digunakan untuk membuat koneksi socket antara server dan klien.
@@ -240,3 +240,6 @@ if __name__ == "__main__":
 ![alt text](assets/2.png)
 
 **Analisis :**
+
+Program diatas menyediakan antarmuka sederhana bagi pengguna untuk berinteraksi dengan server FTP, dengan mendukung beberapa perintah dasar seperti `daftar file`, `unggah`, `unduh`, `hapus file`, serta `mengelola koneksi`. Melalui penggunaan loop untuk menerima masukan dan respons dari server, serta penanganan kesalahan yang memadai, klien memberikan pengalaman yang jelas dan dapat diandalkan bagi pengguna dalam berkomunikasi dengan server. Berikut penjelasan kode programnya :
+
