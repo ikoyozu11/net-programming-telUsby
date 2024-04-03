@@ -14,10 +14,8 @@ Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibua
 
 # Daftar Isi
 
-### [Penjelasan Kode Program](#Penjelasan)
-### - [server.py](#KodeProgram1)
-### - [client.py](#KodeProgram2)
-### [Simulasi Program](#Penggunaan)
+### - [Penjelasan Kode Program](#Penjelasan)
+### - [Simulasi Program](#Penggunaan)
 
 ## Soal
 
@@ -33,7 +31,6 @@ Buat sebuah program file transfer protocol menggunakan socket programming dengan
 
 ## Penjelasan
 
-### Kode Program 1
 `server.py`
 
 ```py
@@ -184,7 +181,6 @@ Program diatas adalah implementasi sederhana dari server TCP yang memungkinkan k
 
 <br>
 
-### Kode Program 2
 `client.py`
 
 ```py
