@@ -1,36 +1,36 @@
 <h1 align="left">
     <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&color=F7AA00&center=false&vCenter=true&width=800&height=70&duration=4000&pause=500&lines=⚡+Welcome+to+My+Repository+⚡;+File+Transfer+Protocol+-+Socket+Programming+😁;"/>
 </h1>
-<p><strong>Nama : Okky Rangga Pratama</strong></p>
-<p><strong>NIM : 1203220011</strong></p>
-<p><strong>Kelas : IF-02-01</strong></p>
 
+```
+Nama : Okky Rangga Pratama
+NIM : 1203220011
+Kelas : IF-02-01
+```
 
 ## Pendahuluan
 
 Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibuat adalah FTP Socket Programming menggunakan Python.
 
-
 ## Daftar Isi
 
 ### [Penjelasan Kode Program](#Penjelasan) | [Simulasi Program](#Penggunaan)
 
-
 ## Soal
 
-buat sebuah program file transfer protocol menggunakan socket programming dengan beberapa perintah dari client seperti berikut.
-- ls : ketika client menginputkan command tersebut, maka server akan memberikan daftar file dan folder. 
-- rm {nama file} : ketika client menginputkan command tersebut, maka server akan menghapus file dengan acuan nama file yang diberikan pada parameter pertama.
-- download {nama file} : ketika client menginputkan command tersebut, maka server akan memberikan file dengan acuan nama file yang diberikan pada parameter pertama.
-- upload {nama file} : ketika client menginputkan command tersebut, maka server akan menerima dan menyimpan file dengan acuan nama file yang diberikan pada parameter pertama.
-- size {nama file} : ketika client menginputkan command tersebut, maka server akan memberikan informasi file dalam satuan MB (Mega bytes) dengan acuan nama file yang diberikan pada parameter pertama.
-- byebye : ketika client menginputkan command tersebut, maka hubungan socket client akan diputus.
-- connme : ketika client menginputkan command tersebut, maka hubungan socket client akan terhubung.
+Buat sebuah program file transfer protocol menggunakan socket programming dengan beberapa perintah dari client seperti berikut.
 
+- `ls` : ketika client menginputkan command tersebut, maka server akan memberikan daftar file dan folder.
+- `rm {nama file}` : ketika client menginputkan command tersebut, maka server akan menghapus file dengan acuan nama file yang diberikan pada parameter pertama.
+- `download {nama file}` : ketika client menginputkan command tersebut, maka server akan memberikan file dengan acuan nama file yang diberikan pada parameter pertama.
+- `upload {nama file}` : ketika client menginputkan command tersebut, maka server akan menerima dan menyimpan file dengan acuan nama file yang diberikan pada parameter pertama.
+- `size {nama file}` : ketika client menginputkan command tersebut, maka server akan memberikan informasi file dalam satuan MB (Mega bytes) dengan acuan nama file yang diberikan pada parameter pertama.
+- `byebye` : ketika client menginputkan command tersebut, maka hubungan socket client akan diputus.
+- `connme` : ketika client menginputkan command tersebut, maka hubungan socket client akan terhubung.
 
 ## Penjelasan
 
-**server.py**
+`server.py`
 
 ```py
 import socket
@@ -143,5 +143,99 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
+
+**Output :**
+
+![alt text](assets/1.png)
+
+**Analisis :**
+
+Program diatas adalah implementasi sederhana dari server TCP yang memungkinkan klien untuk berinteraksi dengan file-file di direktori server. Server menerima permintaan dari klien seperti daftar file, ukuran file, menghapus, mengunduh, atau mengunggah file, dan memberikan respons sesuai. Ini dilakukan melalui penggunaan socket dan fungsi-fungsi bawaan Python untuk mengelola file dan koneksi jaringan. Berikut penjelasan kode programnya :
+
+**1. Import library yang diperlukan :**
+   - `socket` : Digunakan untuk membuat koneksi socket antara server dan klien.
+   - `os` : Digunakan untuk berinteraksi dengan sistem operasi, seperti mengelola file.
+
+**2. Mendefinisikan konstanta :**
+   - `SERVER_HOST` : Menyimpan alamat IP server.
+   - `SERVER_PORT` : Menyimpan port tempat server mendengarkan koneksi dari klien.
+   - `BUFFER_SIZE` : Menyimpan ukuran buffer yang digunakan untuk mengirim dan menerima data.
+
+**3. Definisi fungsi-fungsi :**
+   - `list_files()` : Mengembalikan daftar file dalam direktori server.
+   - `file_size(filename)` : Mengembalikan ukuran file (dalam MB) jika file tersebut ada.
+   - `remove_file(filename)` : Menghapus file jika ada.
+   - `receive_file(client_socket, filename)` : Menerima file dari klien dan menyimpannya di server.
+   - `send_file(client_socket, filename)` : Mengirim file kepada klien jika file tersebut ada.
+
+**4. Fungsi `main()` :**
+   - Membuat socket server dan mengikatnya ke alamat dan port yang ditentukan.
+   - Mengawakili server untuk koneksi masuk dan mengelola setiap koneksi menggunakan loop tak terbatas.
+   - Menerima pesan dari klien, memprosesnya, dan memberikan respons sesuai permintaan klien.
+   - Jika klien mengirim perintah `byebye`, server akan menutup koneksi dengan klien dan kembali mendengarkan koneksi baru.
+
+**5. Eksekusi utama :**
+   - Memulai server dengan memanggil fungsi `main()` jika file ini dijalankan sebagai skrip utama.
+
+<br>
+
+`client.py`
+
+```py
+import socket
+
+SERVER_HOST = '127.0.0.1'
+SERVER_PORT = 12345
+BUFFER_SIZE = 1024
+
+
+def main():
+    print("\n------------------------------------")
+    print("FTP with Socket Programming on Python")
+    print("-------------------------------------")
+    print("Choose Command:")
+    print("connme                : Connect to server (run this first to continue other commands)")
+    print("ls                    : List files")
+    print("size <file_path>      : View size files")
+    print("upload <file_path>    : Upload file")
+    print("download <file_path>  : Download file")
+    print("rm <file_path>        : Delete file")
+    print("byebye                : Exit program and Disconnect from server")
+    print("-------------------------------------")
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
+        while True:
+            command = input("\nEnter Command : ").strip()
+            if command == 'connme':
+                client_socket.connect((SERVER_HOST, SERVER_PORT))
+                print(f"[*] Connected to server {SERVER_HOST}:{SERVER_PORT}")
+                client_socket.send(command.encode())
+                print("[*] Connection established.")
+                break
+
+        while True:
+            command = input("\nEnter Command : ").strip()
+            client_socket.send(command.encode())
+
+            if command == 'byebye':
+                print("[*] Disconnecting from server...")
+                print(client_socket.recv(BUFFER_SIZE).decode())
+                break
+
+            data = client_socket.recv(BUFFER_SIZE).decode()
+            if data == "Command not found":
+                print("[!] Command not found. Please enter a valid command.")
+            else:
+                print(data)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+**Output :**
+
+![alt text](assets/2.png)
+
+**Analisis :**
