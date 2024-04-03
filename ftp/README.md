@@ -8,11 +8,11 @@ NIM : 1203220011
 Kelas : IF-02-01
 ```
 
-# Pendahuluan
+## Pendahuluan
 
 Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibuat adalah FTP Socket Programming menggunakan Python.
 
-# Daftar Isi
+## Daftar Isi
 
 ### - [Penjelasan Kode Program](#Penjelasan)
 ### - [Simulasi Program](#Penggunaan)
@@ -243,3 +243,24 @@ if __name__ == "__main__":
 
 Program diatas menyediakan antarmuka sederhana bagi pengguna untuk berinteraksi dengan server FTP, dengan mendukung beberapa perintah dasar seperti `daftar file`, `unggah`, `unduh`, `hapus file`, serta `mengelola koneksi`. Melalui penggunaan loop untuk menerima masukan dan respons dari server, serta penanganan kesalahan yang memadai, klien memberikan pengalaman yang jelas dan dapat diandalkan bagi pengguna dalam berkomunikasi dengan server. Berikut penjelasan kode programnya :
 
+**1. Impor modul `socket` :**
+   - Modul ini digunakan untuk membuat koneksi soket antara klien dan server.
+
+**2. Mendefinisikan konstanta :**
+   - `SERVER_HOST` : Menyimpan alamat IP server.
+   - `SERVER_PORT` : Menyimpan port tempat server mendengarkan koneksi dari klien.
+   - `BUFFER_SIZE` : Menyimpan ukuran buffer yang digunakan untuk mengirim dan menerima data.
+
+**3. Fungsi `main()` :**
+   - Menampilkan pesan sambutan dan daftar perintah yang tersedia untuk pengguna.
+   - Membuat soket klien menggunakan `socket.socket()` dengan domain `AF_INET` dan tipe `SOCK_STREAM`.
+   - Loop pertama:
+     - Menghubungkan klien ke server saat perintah `connme` dimasukkan.
+     - Mengirim perintah `connme` ke server.
+     - Memecah loop setelah koneksi berhasil dibuat.
+   - Loop kedua:
+     - Mengirim perintah yang dimasukkan oleh pengguna ke server.
+     - Jika perintah adalah `byebye`, klien akan memutus koneksi dengan server dan keluar dari loop.
+     - Menerima respons dari server dan mencetaknya.
+     - Jika respons adalah `Command not found`, mencetak pesan kesalahan.
+     - Loop akan terus berjalan hingga pengguna memasukkan perintah `byebye`.
