@@ -8,6 +8,8 @@ NIM : 1203220011
 Kelas : IF-02-01
 ```
 
+<hr>
+
 ## Pendahuluan
 
 Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibuat adalah FTP Socket Programming menggunakan Python.
@@ -16,6 +18,8 @@ Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibua
 
 ### - [Penjelasan Kode Program](#Penjelasan)
 ### - [Simulasi Program](#Simulasi)
+
+<hr>
 
 ## Soal
 
@@ -28,6 +32,9 @@ Buat sebuah program file transfer protocol menggunakan socket programming dengan
 - `size {nama file}` : ketika client menginputkan command tersebut, maka server akan memberikan informasi file dalam satuan MB (Mega bytes) dengan acuan nama file yang diberikan pada parameter pertama.
 - `byebye` : ketika client menginputkan command tersebut, maka hubungan socket client akan diputus.
 - `connme` : ketika client menginputkan command tersebut, maka hubungan socket client akan terhubung.
+
+<br>
+<hr>
 
 ## Penjelasan
 
@@ -266,6 +273,7 @@ Program diatas menyediakan antarmuka sederhana bagi pengguna untuk berinteraksi 
      - Loop akan terus berjalan hingga pengguna memasukkan perintah `byebye`.
 
 <br>
+<hr>
 
 ## Simulasi
 
@@ -382,3 +390,9 @@ Perintah `byebye` digunakan untuk memutuskan koneksi antara `client` dengan `ser
 ![alt text](assets/11-1.png)
 
 Bisa dilihat dari tampilan diatas, bahwa `client` sudah terputus koneksinya dan `server` masih tetap berjalan. Untuk menghubungkan `client` dengan `server` lagi, hanya perlu memasukkan command `connme` maka akan tersambung kembali dengan syarat server masih berjalan.
+
+<hr>
+
+Sekian penjelasan dari saya😁, jangan lupa meninggalkan jejak dengan klik `star`⚡di repositori ini.
+
+<h3 align="left">Thank you and have a great day ❤</h3>
