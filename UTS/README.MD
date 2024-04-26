@@ -29,7 +29,7 @@ Kode ini bekerja menggunakan soket UDP dalam bahasa python. Dengan menerapkan ko
 
 Berikut Penjelasan kode dari server dan client
 
-**server.py**.
+`server.py`
 
 ```python
 import socket
@@ -74,7 +74,8 @@ while True:
 server_socket.close()
 ```
 
-**Output**
+**Output :**
+
 ![alt text](assets/server.png)
 
 **Penjelasan**
