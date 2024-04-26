@@ -21,10 +21,11 @@ Kelas : IF-02-01
 Buatlah sebuah permainan yang menggunakan soket dan protokol UDP. Permainannya cukup sederhana, dengan 1 server dapat melayani banyak klien (one-to-many). Setiap 10 detik, server akan mengirimkan kata warna acak dalam bahasa Inggris kepada semua klien yang terhubung. Setiap klien harus menerima kata yang berbeda (unik). Selanjutnya, klien memiliki waktu 5 detik untuk merespons dengan kata warna dalam bahasa Indonesia. Setelah itu, server akan memberikan nilai feedback 0 jika jawabannya salah dan 100 jika benar.
 
 <br>
+<hr>
 
 ## Alur Kode
 
-Kode ini bekerja menggunakan soket UDP dalam bahasa python. Dengan menerapkan konsep one-to-many, artinya 1 Server bisa melayani banyak client dalam waktu yang bersamaan ketika program dijalankan.
+Kode ini bekerja menggunakan soket UDP dalam bahasa python. Dengan menerapkan konsep one-to-many yang berarti 1 Server bisa melayani banyak client dalam waktu yang bersamaan ketika program dijalankan.
 
 Berikut Penjelasan kode dari server dan client
 
@@ -35,11 +36,14 @@ import socket
 import random
 import time
 
+
 def generate_random_color():
-    colors = ["red", "green", "blue", "yellow", "purple", "orange", "black", "white", "brown", "pink"]
+    colors = ["red", "green", "blue", "yellow", "purple",
+              "orange", "black", "white", "brown", "pink"]
     return random.choice(colors)
 
-server_ip = "127.0.0.1"  # Ganti dengan alamat IP server
+
+server_ip = "127.0.0.1"
 server_port = 12345
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
