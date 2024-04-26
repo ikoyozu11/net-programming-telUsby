@@ -78,7 +78,7 @@ server_socket.close()
 
 ![alt text](assets/server.png)
 
-**Penjelasan**
+**Penjelasan :**
 
 Berikut adalah penjelasan dari kode tersebut:
 
@@ -104,12 +104,13 @@ Secara keseluruhan, kode ini membuat sebuah server UDP yang dapat mengirimkan wa
 
 <br>
 
-**client.py**
+``client.py`
 
 ```python
 import socket
 import time
 import threading
+
 
 def english_to_indonesian_color(english_color):
     color_mapping = {
@@ -126,18 +127,19 @@ def english_to_indonesian_color(english_color):
     }
     return color_mapping.get(english_color.lower(), "tidak dikenali")
 
-server_ip = "127.0.0.1"  # Ganti dengan alamat IP server
+
+server_ip = "127.0.0.1"
 server_port = 12345
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 
-
 while True:
     try:
-        def input_with_timeout(prompt ,timeout):
+        def input_with_timeout(prompt, timeout):
             print(prompt, flush=True)
-            response = [None]  # Response will be stored here
+            response = [None]
+
             def input_thread():
                 try:
                     response[0] = input()
@@ -152,18 +154,19 @@ while True:
                 print(f"\nAnda tidak menjawab selama {timeout} detik\n")
                 print("Tekan Enter untuk melanjutkan\n")
                 thread.join()
-                
+
                 return None
             else:
                 return response[0]
-            
-        client_socket.sendto("request_color".encode("utf-8"), (server_ip, server_port))
+
+        client_socket.sendto("request_color".encode(
+            "utf-8"), (server_ip, server_port))
         color, server_address = client_socket.recvfrom(1024)
         color = color.decode("utf-8")
         print(f"Warna yang diterima: {color}")
 
-        # Klien memiliki waktu 5 detik untuk merespons
-        response = input_with_timeout("Apa warna dalam bahasa Indonesia? ", 5)
+        response = input_with_timeout(
+            "Sebutkan warna tersebut dalam bahasa indonesia! ", 5)
 
         indonesian_color = english_to_indonesian_color(color)
         if response is None:
@@ -174,7 +177,7 @@ while True:
             print("Jawaban salah. Nilai feedback: 0")
 
         print("Tunggu 10 detik untuk menerima warna baru\n")
-        time.sleep(10)  # Tunggu 10 detik sebelum mengirim permintaan lagi
+        time.sleep(10)
     except KeyboardInterrupt:
         print("\nKlien berhenti.")
         break
@@ -182,10 +185,12 @@ while True:
 client_socket.close()
 ```
 
-**Output**
+**Output :**
+
 ![alt text](assets/client.png)
 
-**Penjelasan**
+**Penjelasan :**
+
 Berikut adalah penjelasan dari kode tersebut:
 
 1. Kode mengimpor modul `socket` untuk membuat socket jaringan, modul `time` untuk melakukan operasi yang terkait dengan waktu, dan modul `threading` untuk membuat thread baru.
@@ -211,6 +216,7 @@ Berikut adalah penjelasan dari kode tersebut:
 Secara keseluruhan, kode ini membuat sebuah klien UDP yang terhubung ke server warna dari kode sebelumnya. Klien akan meminta warna dalam bahasa Inggris dari server, dan meminta pengguna untuk menerjemahkan warna tersebut ke dalam bahasa Indonesia dengan batasan waktu 5 detik. Jika pengguna menjawab dengan benar, maka akan diberikan nilai feedback 100, jika salah atau waktu habis, maka nilai feedback adalah 0. Setelah memberikan feedback, klien akan menunggu 10 detik sebelum meminta warna baru dari server.
 
 <br>
+<hr>
 
 ## Penggunaan
 
