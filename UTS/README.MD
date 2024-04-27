@@ -104,7 +104,7 @@ Secara keseluruhan, kode ini membuat sebuah server UDP yang dapat mengirimkan wa
 
 <br>
 
-``client.py`
+`client.py`
 
 ```python
 import socket
