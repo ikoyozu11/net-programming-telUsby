@@ -222,7 +222,7 @@ Secara keseluruhan, kode ini membuat sebuah klien UDP yang terhubung ke server w
 
 ### Menggunakan 1 Server dan 1 Client
 
-Untuk menggunakan cara ini harus menjalankan 2 file yaitu server.py dan client.py (salah satu file client)
+Untuk menggunakan cara ini harus menjalankan 2 file yaitu `server.py` dan `client.py` (salah satu file client)
 
 ```
 > python server.py
@@ -250,7 +250,7 @@ Untuk menggunakan cara ini harus menjalankan 2 file yaitu server.py dan client.p
 
 ### Menggunakan 1 Server dan Banyak Client
 
-Untuk menggunakan cara ini cukup menjalankan script run.py
+Untuk menggunakan cara ini cukup menjalankan script `run.py`
 
 ```
 > python run.py
