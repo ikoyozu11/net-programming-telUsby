@@ -265,3 +265,9 @@ Untuk menggunakan cara ini cukup menjalankan script `run.py`
 > - Jika tidak menginputkan apapun maka akan muncul anda tidak menjawab dalam 5 detik dan tekan enter untuk melanjutkan
 >
 > Server akan memberikan warna baru kepada client setiap 10 detik jika menjawab dengan benar/salah/tidak menjawab
+
+<hr>
+
+Sekian penjelasan dari saya😁, jangan lupa meninggalkan jejak dengan klik `star`⚡di repositori ini.
+
+<h3 align="left">Thank you and have a great day ❤</h3>
