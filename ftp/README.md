@@ -487,6 +487,26 @@ while True:
 
 Untuk update keseluruhan file bisa dilihat di repository pada file `server.py` dan `client.py`
 
+### Output :
+
+**1. Mengupload ke folder tertentu (server-folder) dan menampilkan nama file + size**
+
+Note : Membuat folder server-folder
+![alt text](assets/15.png)
+
+`client.py`
+
+![alt text](assets/12.png)
+
+`server.py`
+
+![alt text](assets/14.png)
+
+Note : File sudah terupload dengan ukuran dan nama yang sesuai serta lokasi folder yang betul
+![alt text](assets/13.png)
+
+**2. Menangani jika client mengupload file dengan nama yang sama**
+
 
 
 <hr>
