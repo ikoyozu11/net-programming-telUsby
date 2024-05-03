@@ -4,6 +4,7 @@ import os
 SERVER_HOST = '127.0.0.1'
 SERVER_PORT = 12345
 BUFFER_SIZE = 1024
+UPLOAD_FOLDER = 'server-folder'
 
 
 def list_files():
@@ -31,12 +32,17 @@ def remove_file(filename):
 
 
 def receive_file(client_socket, filename):
-    with open(filename, 'wb') as file:
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    with open(file_path, 'wb') as file:
         while True:
             data = client_socket.recv(BUFFER_SIZE)
             if not data:
                 break
             file.write(data)
+    print(f"[*] File '{filename}' received and saved to {UPLOAD_FOLDER}")
+    file_size = os.path.getsize(file_path) / (1024 * 1024)
+    print(f"[*] Size of '{filename}': {file_size:.2f} MB")
+    return file_path, file_size
 
 
 def send_file(client_socket, filename):
