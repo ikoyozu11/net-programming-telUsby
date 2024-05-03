@@ -393,6 +393,25 @@ Bisa dilihat dari tampilan diatas, bahwa `client` sudah terputus koneksinya dan 
 
 <hr>
 
+## Tambahan
+
+Tambahkan beberapa fitur dan tampilan seperti perintah dibawah ini :
+
+- Modifikasi agar file yang diterima dimasukkan ke folder tertentu 
+- Modifikasi program agar memberikan feedback nama file dan filesize yang diterima.
+- Apa yang terjadi jika pengirim mengirimkan file dengan nama yang sama dengan file yang telah dikirim sebelumnya? Dapat menyebabkan masalah kah ? Lalu bagaimana solusinya? Implementasikan ke dalam program, solusi yang Anda berikan.
+
+<br>
+
+Berikut tambahan kode program pada masing-masing file :
+
+`server.py`
+
+
+`client.py`
+
+<hr>
+
 Sekian penjelasan dari saya😁, jangan lupa meninggalkan jejak dengan klik `star`⚡di repositori ini.
 
 <h3 align="left">Thank you and have a great day ❤</h3>
