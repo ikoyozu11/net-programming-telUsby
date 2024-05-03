@@ -1,8 +1,23 @@
 import socket
+import os
 
 SERVER_HOST = '127.0.0.1'
 SERVER_PORT = 12345
 BUFFER_SIZE = 1024
+
+
+def send_file(client_socket, filename):
+    if os.path.exists(filename):
+        with open(filename, 'rb') as file:
+            while True:
+                data = file.read(BUFFER_SIZE)
+                if not data:
+                    break
+                client_socket.send(data)
+        print(f"[*] File '{filename}' sent successfully")
+    else:
+        print(f"[!] File '{filename}' not found")
+        client_socket.send("File not found".encode())
 
 
 def main():
@@ -12,10 +27,10 @@ def main():
     print("Choose Command:")
     print("connme                : Connect to server (run this first to continue other commands)")
     print("ls                    : List files")
-    print("size <file_path>      : View size files")
-    print("upload <file_path>    : Upload file")
-    print("download <file_path>  : Download file")
-    print("rm <file_path>        : Delete file")
+    print("size <file_name>      : View size files")
+    print("upload <file_name>    : Upload file")
+    print("download <file_name>  : Download file")
+    print("rm <file_name>        : Delete file")
     print("byebye                : Exit program and Disconnect from server")
     print("-------------------------------------")
 
@@ -43,6 +58,12 @@ def main():
                 print("[!] Command not found. Please enter a valid command.")
             else:
                 print(data)
+                if command.startswith('upload'):
+                    filename = command.split()[1]
+                    print(client_socket.recv(BUFFER_SIZE).decode())
+                    client_socket.send("start_upload".encode())
+                    send_file(client_socket, filename)
+                    print(client_socket.recv(BUFFER_SIZE).decode())
 
 
 if __name__ == "__main__":
