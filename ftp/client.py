@@ -37,15 +37,6 @@ def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
         while True:
             command = input("\nEnter Command : ").strip()
-            if command == 'connme':
-                client_socket.connect((SERVER_HOST, SERVER_PORT))
-                print(f"[*] Connected to server {SERVER_HOST}:{SERVER_PORT}")
-                client_socket.send(command.encode())
-                print("[*] Connection established.")
-                break
-
-        while True:
-            command = input("\nEnter Command : ").strip()
             client_socket.send(command.encode())
 
             if command == 'byebye':
@@ -56,6 +47,10 @@ def main():
             data = client_socket.recv(BUFFER_SIZE).decode()
             if data == "Command not found":
                 print("[!] Command not found. Please enter a valid command.")
+            elif data.startswith("File with name"):
+                print(data)
+                new_filename = input("Please enter a different filename: ")
+                client_socket.send(new_filename.encode())
             else:
                 print(data)
                 if command.startswith('upload'):
