@@ -491,8 +491,9 @@ Untuk update keseluruhan file bisa dilihat di repository pada file `server.py` d
 
 **1. Mengupload ke folder tertentu (server-folder) dan menampilkan nama file + size**
 
-Note : Membuat folder server-folder
 ![alt text](assets/15.png)
+
+Note : Membuat folder server-folder
 
 `client.py`
 
@@ -502,11 +503,23 @@ Note : Membuat folder server-folder
 
 ![alt text](assets/14.png)
 
-Note : File sudah terupload dengan ukuran dan nama yang sesuai serta lokasi folder yang betul
 ![alt text](assets/13.png)
+
+Note : File sudah terupload dengan ukuran dan nama yang sesuai serta lokasi folder yang betul
+
+<br>
 
 **2. Menangani jika client mengupload file dengan nama yang sama**
 
+`client.py`
+
+![alt text](assets/16.png)
+
+Note : Client diminta mengupload file ulang dengan nama yang berbeda
+
+`server.py`
+
+![alt text](assets/17.png)
 
 
 <hr>
