@@ -18,6 +18,7 @@ Repository ini berisi tugas mata kuliah Pemrograman jaringan. Program yang dibua
 
 ### - [Penjelasan Kode Program](#Penjelasan)
 ### - [Simulasi Program](#Simulasi)
+### - [Tambahan Soal](#Tambahan)
 
 <hr>
 
@@ -407,8 +408,86 @@ Berikut tambahan kode program pada masing-masing file :
 
 `server.py`
 
+```py
+# di modifikasi seperti dibawah ini
+# untuk menangani 3 problem yang diminta
+# memunculkan nama file dan ukuran serta menangani jika terjadi nama file yang sama saat upload
+def receive_file(client_socket, filename):
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    if os.path.exists(file_path):
+        return f"File with name '{filename}' already exists. Please use a different name."
+
+    with open(file_path, 'wb') as file:
+        while True:
+            data = client_socket.recv(BUFFER_SIZE)
+            if not data:
+                break
+            file.write(data)
+    print(f"[*] File '{filename}' received and saved to {UPLOAD_FOLDER}")
+    file_size = os.path.getsize(file_path) / (1024 * 1024)
+    print(f"[*] Size of '{filename}': {file_size:.2f} MB")
+    return f"[*] File '{filename}' uploaded successfully. Size: {file_size:.2f} MB"
+
+# memperbaiki dibagian def main
+# untuk menangani kondisi saat upload
+elif data.startswith('upload'):
+    filename = data.split()[1]
+    client_socket.send("Ready to receive file".encode())
+    receive_file(client_socket, filename)
+    client_socket.send(
+        f"{filename} uploaded successfully".encode())
+```
 
 `client.py`
+
+```py
+# menambahkan def send_file
+# untuk menangani file yang dikirim ke server
+def send_file(client_socket, filename):
+    if os.path.exists(filename):
+        with open(filename, 'rb') as file:
+            while True:
+                data = file.read(BUFFER_SIZE)
+                if not data:
+                    break
+                client_socket.send(data)
+        print(f"[*] File '{filename}' sent successfully")
+    else:
+        print(f"[!] File '{filename}' not found")
+        client_socket.send("File not found".encode())
+
+
+# memperbaiki dibagian def main
+# untuk menangani upload file
+while True:
+    command = input("\nEnter Command : ").strip()
+    client_socket.send(command.encode())
+
+    if command == 'byebye':
+        print("[*] Disconnecting from server...")
+        print(client_socket.recv(BUFFER_SIZE).decode())
+        break
+
+    data = client_socket.recv(BUFFER_SIZE).decode()
+    if data == "Command not found":
+        print("[!] Command not found. Please enter a valid command.")
+    elif data.startswith("File with name"):
+        print(data)
+        new_filename = input("Please enter a different filename: ")
+        client_socket.send(new_filename.encode())
+    else:
+        print(data)
+        if command.startswith('upload'):
+            filename = command.split()[1]
+            print(client_socket.recv(BUFFER_SIZE).decode())
+            client_socket.send("start_upload".encode())
+            send_file(client_socket, filename)
+            print(client_socket.recv(BUFFER_SIZE).decode())
+```
+
+Untuk update keseluruhan file bisa dilihat di repository pada file `server.py` dan `client.py`
+
+
 
 <hr>
 
