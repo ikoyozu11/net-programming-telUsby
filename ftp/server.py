@@ -33,6 +33,9 @@ def remove_file(filename):
 
 def receive_file(client_socket, filename):
     file_path = os.path.join(UPLOAD_FOLDER, filename)
+    if os.path.exists(file_path):
+        return f"File with name '{filename}' already exists. Please use a different name."
+
     with open(file_path, 'wb') as file:
         while True:
             data = client_socket.recv(BUFFER_SIZE)
@@ -42,7 +45,7 @@ def receive_file(client_socket, filename):
     print(f"[*] File '{filename}' received and saved to {UPLOAD_FOLDER}")
     file_size = os.path.getsize(file_path) / (1024 * 1024)
     print(f"[*] Size of '{filename}': {file_size:.2f} MB")
-    return file_path, file_size
+    return f"[*] File '{filename}' uploaded successfully. Size: {file_size:.2f} MB"
 
 
 def send_file(client_socket, filename):
